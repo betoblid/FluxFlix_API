@@ -1,7 +1,7 @@
 require("dotenv").config();
 const postgres = require("postgres");
 
-let { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
+const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
 const sql = postgres({
   host: PGHOST,
@@ -13,6 +13,6 @@ const sql = postgres({
   connection: {
     options: `project=${ENDPOINT_ID}`,
   },
+  idle_timeout: 5,
 });
-
 module.exports = sql;
